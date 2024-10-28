@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "TymeXMobile"
 include(":app")
- 
+include(":core:model")
+include(":core:data")
+include(":core:domain")

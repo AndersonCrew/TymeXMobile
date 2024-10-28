@@ -101,12 +101,8 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
 
-    // retrofit
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.gson)
-    implementation(libs.retrofit.moshi)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
+
+    api(project(":core:domain"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

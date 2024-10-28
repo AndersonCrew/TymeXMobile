@@ -1,6 +1,7 @@
 package com.android
 
 import android.app.Application
+import com.android.model.BaseModel
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -8,4 +9,5 @@ import dagger.hilt.android.HiltAndroidApp
  */
 @HiltAndroidApp
 class TymeXApplication: Application() {
+
 }
