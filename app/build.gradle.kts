@@ -84,6 +84,12 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
+    packaging {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
 }
 
 dependencies {
@@ -99,9 +105,15 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
 
+    implementation(libs.recyclerview)
+
     // hilt
     api(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
+
+    //Glide
+    implementation(libs.glide)
+    implementation(libs.glide.processor)
 
     implementation(project(":core:domain"))
 

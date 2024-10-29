@@ -14,14 +14,14 @@ import javax.inject.Inject
 /**
  * Created by BM Anderson on 29/10/2024.
  */
-class AllAuditionUseCase @Inject constructor(
+class GetUsersUseCase @Inject constructor(
     private val testRepository: TestRepository
 ) {
-    operator fun invoke(): Flow<UseCaseResult<List<User>>> {
+    operator fun invoke(page: Int): Flow<UseCaseResult<List<User>>> {
         return flow {
-            when (val result = testRepository.getUsers()) {
+            when (val result = testRepository.getUsers(page)) {
                 is ResponseResult.Success -> {
-                    emit(AllAuditionResult.AllAuditionSuccess(result.data))
+                    emit(GetUsersUseResult.GetUsersUseResultSuccess(result.data))
                 }
 
                 else -> emit(result.asUseCaseResult())
@@ -30,6 +30,6 @@ class AllAuditionUseCase @Inject constructor(
     }
 }
 
-sealed class AllAuditionResult<out T> : UseCaseResult.Feature() {
-    class AllAuditionSuccess(val data: List<User>?) : AllAuditionResult<Nothing>()
+sealed class GetUsersUseResult<out T> : UseCaseResult.Feature() {
+    class GetUsersUseResultSuccess(val data: List<User>?) : GetUsersUseResult<Nothing>()
 }

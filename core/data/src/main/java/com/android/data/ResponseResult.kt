@@ -14,17 +14,17 @@ sealed interface ResponseResult<out T> {
 sealed class ResourceException: ResponseResult.Exception() {
     // When refreshToken fail
     // Use this object to back to login screen
-    object UnAuthorized : ResourceException()
-    object NetworkConnection: ResourceException()
-    object TimeoutConnection: ResourceException()
-    object ServerError: ResourceException()
-    object UnknownException: ResourceException()
+    data object UnAuthorized : ResourceException()
+    data object NetworkConnection: ResourceException()
+    data object TimeoutConnection: ResourceException()
+    data object ServerError: ResourceException()
+    data object UnknownException: ResourceException()
 }
 
 sealed interface UseCaseResult<out T> {
 
-    object Loading : UseCaseResult<Nothing>
-    object UnLoading : UseCaseResult<Nothing>
+    data object Loading : UseCaseResult<Nothing>
+    data object UnLoading : UseCaseResult<Nothing>
     data class Success<T>(val data: T?) : UseCaseResult<T>
     data class Error<T>(val error: ErrorApi?) : UseCaseResult<T>
     data class Exception(val ex: ResponseResult.Exception) : UseCaseResult<Nothing>

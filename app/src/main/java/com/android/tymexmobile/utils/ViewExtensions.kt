@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 fun View.gone() {
     visibility = View.GONE
@@ -89,6 +92,15 @@ inline fun View.singleClick(thresholdMs: Long = 300, crossinline listener: (v: V
             lastClickTime = realTime
             listener(it)
         }
+    }
+}
+
+fun ImageView.loadImage(url: String?, context: Context, errorImage: Int, isCenterCrop: Boolean = true) {
+    if(isCenterCrop) {
+        Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).error(errorImage)
+            .centerCrop().into(this)
+    } else {
+        Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).error(errorImage).into(this)
     }
 }
 

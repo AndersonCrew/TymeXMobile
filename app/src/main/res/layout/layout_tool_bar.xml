@@ -19,6 +19,7 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/tvTitle"
         android:textSize="14dp"
         android:fontFamily="@font/pretendard_regular_400"
         android:textColor="@android:color/black"

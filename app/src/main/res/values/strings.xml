@@ -3,4 +3,6 @@
     <string name="follower">Follower</string>
     <string name="following">Following</string>
     <string name="blog">Blog</string>
+    <string name="home_title">Github Users</string>
+    <string name="nodata_user">Empty User List!</string>
 </resources>

@@ -14,11 +14,11 @@ interface TestApiService {
     @GET("users?per_page=20&since=1")
     fun getUsers(
         @Query("per_page") limit: Int = 20,
-        @Query("since") since: Int = 1
-    ): Deferred<DataResponse<List<User>>>
+        @Query("since") since: Int
+    ): Deferred<List<User>>
 
     @GET("users/{userName}")
     fun getUserDetail(
         @Path("userName") userName: String
-    ): Deferred<DataResponse<User>>
+    ): Deferred<User>
 }

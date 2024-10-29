@@ -11,21 +11,21 @@ import javax.inject.Inject
  */
 
 interface TestRepository {
-    suspend fun getUsers(): ResponseResult<List<User>>
+    suspend fun getUsers(page: Int): ResponseResult<List<User>>
     suspend fun getUserDetail(userName: String): ResponseResult<User>
 }
 class TestRepositoryImpl @Inject constructor(
     private val testApiService: TestApiService,
 ) : TestRepository, RepositoryImp() {
 
-    override suspend fun getUsers(): ResponseResult<List<User>> {
-        return asyncDataSource(callback = {
-            testApiService.getUsers()
+    override suspend fun getUsers(page: Int): ResponseResult<List<User>> {
+        return asyncDataSourceGitData(callback = {
+            testApiService.getUsers(since = page)
         })
     }
 
     override suspend fun getUserDetail(userName: String): ResponseResult<User> {
-        return asyncDataSource(callback = {
+        return asyncDataSourceGitData(callback = {
             testApiService.getUserDetail(userName)
         })
     }

@@ -10,3 +10,5 @@ import android.view.ViewGroup
 typealias InflateFragmentAlias<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 typealias InflateActivityAlias<T> = (LayoutInflater) -> T
+
+typealias IsLoading = Boolean

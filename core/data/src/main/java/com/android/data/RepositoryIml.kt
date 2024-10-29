@@ -32,6 +32,18 @@ open class RepositoryImp @Inject constructor() {
         }
     }
 
+    suspend fun <T: Any> asyncDataSourceGitData(
+        callback: () -> Deferred<T>
+    ): ResponseResult<T> {
+        return try {
+            Timber.d("asyncDataSource $callback")
+            val data = callback.invoke().await()
+            ResponseResult.Success(data)
+        } catch (ex: Throwable) {
+            handleError(ex)
+        }
+    }
+
     private fun <T> handleError(error: Throwable): ResponseResult<T> {
         return when (error) {
             is HttpException -> {

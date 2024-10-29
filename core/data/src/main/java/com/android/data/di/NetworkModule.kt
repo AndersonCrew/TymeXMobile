@@ -8,6 +8,7 @@ import com.android.data.scope.HttpLoggingInterceptorModule
 import com.android.data.scope.OkHttpClientApp
 import com.android.data.scope.RetrofitBuilder
 import com.android.data.scope.TokenAuthenticator
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,6 +70,7 @@ object NetworkModule {
     fun provideRetrofit(@OkHttpClientApp okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

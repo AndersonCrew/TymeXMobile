@@ -53,7 +53,7 @@ dependencies {
     // retrofit
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson)
-    implementation(libs.retrofit.moshi)
+    implementation(libs.coroutine.adapter)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
 

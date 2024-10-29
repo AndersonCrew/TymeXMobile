@@ -3,9 +3,5 @@ plugins {
 }
 
 dependencies {
-    // moshi
-    implementation(libs.moshi)
-    implementation(libs.moshi.ktx)
-    implementation(libs.moshi.adapter)
-    implementation(libs.moshi.codegen)
+    implementation(libs.gson)
 }
