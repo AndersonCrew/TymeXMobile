@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -21,8 +24,33 @@ android {
         jvmTarget = "1.8"
     }
 
+    flavorDimensions += "environment"
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+        }
+
+        create("prod") {
+            dimension = "environment"
+        }
+    }
+
+    buildFeatures.buildConfig = true
+
 }
 
 dependencies {
+    implementation(libs.kotlin.coroutine)
+
+    // hilt
+    api(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.android.compiler)
+
     api(project(":core:data"))
+}
+
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

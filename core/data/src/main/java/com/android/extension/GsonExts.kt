@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 
 /**
- * Created by BM Developer.
+ * Created by BM Anderson on 29/10/2024.
  */
 fun <T> T.transformToJson(): String? {
     return try {

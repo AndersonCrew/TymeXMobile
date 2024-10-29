@@ -1,17 +1,28 @@
 package com.android.data.di
 
+import com.android.data.BuildConfig
 import com.android.data.database.DataSharedPreferences
 import com.android.data.scope.HeaderInterceptor
 import com.android.data.scope.HeaderInterceptorModule
-import com.android.data.scope.HeaderInterceptorS3
-import com.android.data.scope.S3HeaderInterceptor
+import com.android.data.scope.HttpLoggingInterceptorModule
+import com.android.data.scope.OkHttpClientApp
+import com.android.data.scope.RetrofitBuilder
+import com.android.data.scope.TokenAuthenticator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * Created by BM Anderson on 28/10/2024.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -24,28 +35,12 @@ object NetworkModule {
         prefs: DataSharedPreferences
     ): Interceptor = HeaderInterceptor(prefs)
 
-    @HeaderInterceptorS3
-    @Provides
-    @Singleton
-    fun providerHeaderS3Interceptor(): Interceptor = S3HeaderInterceptor()
-
-   /* *//** LoggingInterceptor **//*
     @HttpLoggingInterceptorModule
     @Provides
     @Singleton
     fun providerHttpLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = when (BuildConfig.DEBUG) {
             true -> HttpLoggingInterceptor.Level.BODY
-            else -> HttpLoggingInterceptor.Level.NONE
-        }
-    }
-
-    @HttpLoggingInterceptorS3Module
-    @Provides
-    @Singleton
-    fun providerHttpLoggingInterceptorS3(): Interceptor = HttpLoggingInterceptor().apply {
-        level = when (BuildConfig.DEBUG) {
-            true -> HttpLoggingInterceptor.Level.HEADERS
             else -> HttpLoggingInterceptor.Level.NONE
         }
     }
@@ -74,9 +69,8 @@ object NetworkModule {
     fun provideRetrofit(@OkHttpClientApp okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-    }*/
+    }
 }

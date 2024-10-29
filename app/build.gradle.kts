@@ -4,6 +4,7 @@ plugins {
 
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -102,9 +103,7 @@ dependencies {
     api(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
 
-
-    implementation(project(":core:data"))
-
+    implementation(project(":core:domain"))
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

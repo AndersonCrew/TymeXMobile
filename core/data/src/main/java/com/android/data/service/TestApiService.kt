@@ -18,7 +18,7 @@ interface TestApiService {
     ): Deferred<DataResponse<List<User>>>
 
     @GET("users/{userName}")
-    fun loginSNSAsync(
+    fun getUserDetail(
         @Path("userName") userName: String
     ): Deferred<DataResponse<User>>
 }

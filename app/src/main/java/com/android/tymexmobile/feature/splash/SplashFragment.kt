@@ -1,45 +1,50 @@
 package com.android.tymexmobile.feature.splash
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import com.android.data.database.DataSharedPreferences
+import androidx.fragment.app.viewModels
 import com.android.tymexmobile.base.BaseFragment
+import com.android.tymexmobile.base.BaseViewEvent
+import com.android.tymexmobile.base.BaseViewState
 import com.android.tymexmobile.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
 
 /**
  * Created by BM Anderson on 28/10/2024.
  */
 
 @AndroidEntryPoint
-class SplashFragment : BaseFragment() {
+class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(FragmentSplashBinding::inflate) {
 
-    private var binding: FragmentSplashBinding?= null
-    override var enableBackPressedDispatcher: Boolean
-        get() = super.enableBackPressedDispatcher
-        set(value) {
-            true
+    override val viewModel: SplashViewModel by viewModels()
+
+    override var hasFullScreen: Boolean = true
+
+    override var enableBackPressedDispatcher = true
+
+    @Inject lateinit var navigator: SplashNavigator
+    override fun bindViewEvents() {
+        super.bindViewEvents()
+        viewModel.checkAuthentication()
+    }
+
+    override fun bindViewModel(): Unit = with(viewModel) {
+        super.bindViewModel()
+        shareFlow bindTo ::bindShareFlow
+    }
+
+    override fun bindShareFlow(viewEvent: BaseViewEvent) {
+        when (viewEvent) {
+            is SplashViewModel.ViewEvent.NavigateToLogin -> {
+                navigator.navigateSplashToLogin()
+            }
+
+            is SplashViewModel.ViewEvent.NavigateToHome -> {
+                navigator.navigateSplashToHome()
+            }
         }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentSplashBinding.inflate(inflater, container, false)
-        return binding?.root
-    }
+    override fun bindStateFlow(viewState: BaseViewState) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        var a = mPref.deviceToken
     }
 }

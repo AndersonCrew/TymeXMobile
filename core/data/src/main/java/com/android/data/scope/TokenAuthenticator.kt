@@ -1,5 +1,6 @@
 package com.android.data.scope
 
+import com.android.data.BuildConfig
 import com.android.data.database.DataSharedPreferences
 import com.android.model.BaseModel
 import com.android.model.User
@@ -18,13 +19,13 @@ import javax.inject.Inject
 
 
 /**
- * Created by BM Anderson on 29/08/2023.
+ * Created by BM Anderson on 29/10/2024.
  */
 class TokenAuthenticator @Inject constructor(private val mPres: DataSharedPreferences) :
     Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         Timber.d("START REFRESH_TOKEN")
-        val baseUrl = "BuildConfig.BASE_URL" + "auth/renew-access-token"
+        val baseUrl = BuildConfig.BASE_URL + "auth/renew-access-token"
         var request: Request? = if (refreshToken(baseUrl)) {
             response.request.newBuilder().header("Authorization", "Bearer ${mPres.accessToken}").build()
         } else {
@@ -57,7 +58,7 @@ class TokenAuthenticator @Inject constructor(private val mPres: DataSharedPrefer
                 response.toString(),
                 RefreshTokenModel::class.java
             )
-            // save it to the sharedpreferences, storage bla bla ...
+            //TODO save it to the sharedpreferences, storage bla bla ...
             //mPres.accessToken = result?.data?.accessToken
            // mPres.refreshToken = result?.data?.refreshToken
             Timber.d("END REFRESH_TOKEN")
