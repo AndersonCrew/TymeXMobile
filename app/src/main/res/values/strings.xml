@@ -5,4 +5,9 @@
     <string name="blog">Blog</string>
     <string name="home_title">Github Users</string>
     <string name="nodata_user">Empty User List!</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">OK</string>
+    <string name="lost_internet">No Internet, Please check again!</string>
+    <string name="unknow_error">Unknow Error</string>
+    <string name="session_expired">Your token already has expired!</string>
 </resources>

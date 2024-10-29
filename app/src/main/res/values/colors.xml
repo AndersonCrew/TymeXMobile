@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorLine">#C1C1C1</color>
     <color name="colorLink">#0F9AE6</color>
+    <color name="neutral_25">#F5F5F5</color>
+    <color name="neutral_500">#676767</color>
+    <color name="accent01_50">#EEF9F8</color>
+    <color name="accent01_500">#08AE95</color>
+    <color name="grey_1">#F5F5F5</color>
+    <color name="black_700">#333333</color>
+    <color name="black_900">#0A0A0A</color>
 </resources>

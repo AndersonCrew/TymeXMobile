@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    tools:ignore="SpUsage"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="24dp"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/shape_dialog_rectangle"
+            android:paddingTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:fontFamily="@font/pretendard_bold_700"
+                android:textColor="@color/black_900"
+                android:gravity="center_horizontal|bottom"
+                android:visibility="gone"
+                android:textSize="18dp"
+                android:minHeight="37dp"
+                tools:text="정말 탈퇴하시겠습니까?"
+                android:layout_marginHorizontal="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/imgIcon"
+                tools:src="@drawable/ic_lost_internet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:fontFamily="@font/pretendard_regular_400"
+                android:textColor="@color/black_700"
+                android:textSize="14dp"
+                tools:text="탈퇴 하실 경우 계정은 삭제되며\n복구되지 않습니다."
+                android:minHeight="104dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/llButton"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <TextView
+                    android:id="@+id/tvCancel"
+                    android:text="@string/cancel"
+                    android:textSize="14dp"
+                    android:textColor="@color/neutral_500"
+                    android:background="@color/grey_1"
+                    android:alpha="0.8"
+                    android:fontFamily="@font/pretendard_medium_500"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tvYes"
+                    android:text="@string/yes"
+                    android:fontFamily="@font/pretendard_bold_700"
+                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@color/accent01_500"
+                    android:background="@color/accent01_50"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

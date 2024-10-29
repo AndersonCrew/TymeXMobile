@@ -27,7 +27,7 @@ class UsersAdapter : BaseListAdapter<User, ItemUserBinding>(
             tvUserName.text = model.login
             tvLink.text = Html.fromHtml("<u>${model.htmlUrl}</u>", Html.FROM_HTML_MODE_LEGACY)
 
-            imgLogo.loadImage(
+            imgAvatar.loadImage(
                 url = model.avatarUrl,
                 context = binding.root.context,
                 errorImage = R.drawable.user_default

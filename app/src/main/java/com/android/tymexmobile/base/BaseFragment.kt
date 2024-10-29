@@ -12,9 +12,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.android.data.ResourceException
+import com.android.data.UseCaseResult
 import com.android.data.database.DataSharedPreferences
 import com.android.tymexmobile.MainActivity
 import com.android.tymexmobile.R
+import com.android.tymexmobile.dialog.ConfirmDialog
+import com.android.tymexmobile.dialog.LoadingDialog
 import com.android.tymexmobile.utils.InflateFragmentAlias
 import com.android.tymexmobile.utils.safeClick
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +41,12 @@ abstract class BaseFragment<VB : ViewBinding, VM : HostViewModel>(private val in
 
     @Inject
     lateinit var mPref: DataSharedPreferences
+
+    @Inject
+    lateinit var commonDialog: ConfirmDialog
+
+    @Inject
+    lateinit var loadingDialog: LoadingDialog
 
     open var enableBackPressedDispatcher: Boolean = false
     open var hasFullScreen: Boolean = false
@@ -92,7 +102,64 @@ abstract class BaseFragment<VB : ViewBinding, VM : HostViewModel>(private val in
 
     open fun bindViewEvents() {}
 
-    open fun bindViewModel() {}
+    open fun bindViewModel() {
+        with(viewModel) {
+            uiState bindTo ::initObservation
+        }
+    }
+
+    private fun initObservation(state: UseCaseResult<*>?) {
+        when (state) {
+            is UseCaseResult.Loading -> {
+                loadingDialog.show()
+            }
+
+            is UseCaseResult.UnLoading -> {
+                loadingDialog.hide()
+            }
+
+            is UseCaseResult.Error -> {
+                loadingDialog.hide()
+                commonDialog.showDialog(
+                    message = "Server Error!"
+                )
+            }
+
+            is UseCaseResult.Exception -> {
+                loadingDialog.hide()
+                when (state.ex) {
+                    is ResourceException.UnAuthorized -> {
+                        showPopupError(getString(R.string.session_expired), {
+                            mPref.logout()
+                            //TODO Navigate to Login
+                            //navigateTo(LoginRoute(isSignOut = true))
+                        })
+                    }
+
+                    is ResourceException.NetworkConnection -> {
+                        showPopupError(getString(R.string.lost_internet), icon = R.drawable.ic_lost_internet)
+                    }
+
+                    else -> {
+                        showPopupError(getString(R.string.unknow_error))
+                    }
+                }
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
+    open fun showPopupError(message: CharSequence?, callback: () -> Unit = {}, icon: Int?= null) {
+        commonDialog.showDialog(
+            icon = icon,
+            message = message.toString(),
+            rightText = context?.getString(R.string.yes),
+            onRightButtonClick = callback
+        )
+    }
 
     abstract fun bindShareFlow(viewEvent: BaseViewEvent)
 

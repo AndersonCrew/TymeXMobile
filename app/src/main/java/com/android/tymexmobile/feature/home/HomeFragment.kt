@@ -7,7 +7,6 @@ import com.android.tymexmobile.base.BaseFragment
 import com.android.tymexmobile.base.BaseViewEvent
 import com.android.tymexmobile.base.BaseViewState
 import com.android.tymexmobile.databinding.FragmentHomeBinding
-import com.android.tymexmobile.feature.splash.SplashViewModel
 import com.android.tymexmobile.utils.gone
 import com.android.tymexmobile.utils.safeClick
 import com.android.tymexmobile.utils.visible
@@ -51,6 +50,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(FragmentHo
 
         viewModel.getUser(currentPage)
 
+        adapter.onItemClick {
+            navigator.navigateHomeToDetailUser(it)
+        }
+
         binding.toolBar.frBack.safeClick {
             navigator.pressBack()
         }
@@ -90,6 +93,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(FragmentHo
                     adapter.submitList(list)
                 }
             }
+        } else {
+            //Add More Data User
+            val combinedList = mutableListOf<User>().apply {
+                addAll(adapter.currentList)
+                addAll(list ?: emptyList())
+            }
+
+            adapter.submitList(combinedList)
         }
     }
 }

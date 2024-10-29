@@ -106,6 +106,7 @@ dependencies {
     implementation(libs.navigation.ui)
 
     implementation(libs.recyclerview)
+    implementation(libs.lottie)
 
     // hilt
     api(libs.dagger.hilt.android)

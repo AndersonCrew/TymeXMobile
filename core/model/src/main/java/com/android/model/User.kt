@@ -7,7 +7,12 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class User(
-    @SerializedName("avatar_url") val avatarUrl: String,
-    @SerializedName("html_url") val htmlUrl: String,
-    val login: String,
+    @SerializedName("avatar_url") val avatarUrl: String?=null,
+    @SerializedName("html_url") val htmlUrl: String?=null,
+    val login: String?=null,
+    val location: String?=null,
+    val name: String?=null,
+    val blog: String?=null,
+    val followers: Int?=null,
+    val following: Int?=null,
 ): BaseModel()

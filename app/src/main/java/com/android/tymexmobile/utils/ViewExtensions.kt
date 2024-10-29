@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
@@ -33,8 +34,9 @@ fun View.viewable(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }
 
-fun View.textVisible(visible: Boolean) {
-    visibility = if (visible) View.VISIBLE else View.GONE
+fun TextView.textVisible(text: String?) {
+    this.text = text
+    this.visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
 }
 
 

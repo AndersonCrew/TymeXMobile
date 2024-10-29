@@ -11,4 +11,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">42dp</item>
     </style>
+
+    <style name="customDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
+    <style name="loadingDialogTheme" parent="customDialogTheme">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

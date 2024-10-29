@@ -1,10 +1,11 @@
 package com.android.tymexmobile.feature.home
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.android.model.User
 import com.android.tymexmobile.base.BaseFragmentNavigator
 import com.android.tymexmobile.base.HostFragmentNavigator
 import com.android.tymexmobile.base.HostFragmentNavigatorImpl
-import com.android.tymexmobile.feature.splash.SplashFragmentDirections
 import javax.inject.Inject
 
 /**
@@ -12,17 +13,19 @@ import javax.inject.Inject
  */
 interface HomeNavigator : HostFragmentNavigator {
 
-    fun navigateHomeToDetailUser()
+    fun navigateHomeToDetailUser(user: User)
 
 }
 
 class HomeNavigatorImpl @Inject constructor(fragment: Fragment) :
     HostFragmentNavigatorImpl(fragment),
     HomeNavigator {
-    override fun navigateHomeToDetailUser() {
+    override fun navigateHomeToDetailUser(user: User) {
+        val bundle = bundleOf("user" to user)
         navigate(
-            SplashFragmentDirections.actionSplashToHome(),
-            BaseFragmentNavigator.NavigateAnimation.FADE
+            HomeFragmentDirections.actionHomeToDetail(),
+            BaseFragmentNavigator.NavigateAnimation.SLIDE,
+            bundle
         )
     }
 
