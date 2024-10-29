@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="ShapeImage.Common" parent="">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="ShapeImage.Corner.42" parent="ShapeImage.Common">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">42dp</item>
+    </style>
+</resources>

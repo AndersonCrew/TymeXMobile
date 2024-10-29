@@ -11,6 +11,7 @@ open class BaseModel (
 ): Serializable {
 
     open fun createDummyList() : List<BaseModel> {
+
         return listOf()
     }
 
