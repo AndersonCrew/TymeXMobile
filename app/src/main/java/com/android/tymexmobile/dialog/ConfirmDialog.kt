@@ -11,7 +11,7 @@ import com.android.tymexmobile.utils.visible
 import javax.inject.Inject
 
 /**
- * Created by BM Steve on 08/04/2024.
+ * Created by BM Anderson on 29/10/2024.
  */
 
 interface ConfirmDialog : HostDialogDelegate {

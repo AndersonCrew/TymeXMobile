@@ -14,6 +14,10 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
+/**
+ * Created by BM Anderson on 29/10/2024.
+ */
+
 fun View.gone() {
     visibility = View.GONE
 }

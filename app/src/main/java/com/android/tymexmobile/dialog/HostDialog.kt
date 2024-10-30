@@ -8,9 +8,8 @@ import com.android.tymexmobile.base.BaseDialog
 import com.android.tymexmobile.utils.InflateFragmentAlias
 
 /**
- * Created by BM Steve on 08/04/2024.
+ * Created by BM Anderson on 29/10/2024.
  */
-
 abstract class HostDialog<T : ViewBinding>(
     context: Fragment,
     bindingInflater: InflateFragmentAlias<T>,

@@ -7,9 +7,8 @@ import com.android.model.User
 import javax.inject.Inject
 
 /**
- * Created by BM Anderson on 14/08/2023.
+ * Created by BM Anderson on 29/10/2024.
  */
-
 interface TestRepository {
     suspend fun getUsers(page: Int): ResponseResult<List<User>>
     suspend fun getUserDetail(userName: String): ResponseResult<User>

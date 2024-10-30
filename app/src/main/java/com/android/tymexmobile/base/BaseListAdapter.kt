@@ -9,6 +9,9 @@ import androidx.viewbinding.ViewBinding
 import com.android.tymexmobile.utils.InflateFragmentAlias
 import com.android.tymexmobile.utils.safeClick
 
+/**
+ * Created by BM Anderson on 29/10/2024.
+ */
 abstract class BaseListAdapter<T : Any,VB: ViewBinding>(
     private val mInflate: InflateFragmentAlias<VB>,
     itemsSame: (T, T) -> Boolean,

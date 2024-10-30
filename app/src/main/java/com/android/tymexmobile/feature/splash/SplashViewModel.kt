@@ -27,10 +27,10 @@ class SplashViewModel @Inject constructor(private val mPref: DataSharedPreferenc
         delay(1000)
         //Check Authentication
         if(mPref.accessToken.isNullOrEmpty()) {
-            //Navigate to Login
+            /**UnAuthentication -> send event NavigateToLogin to view*/
             _shareFlow.emit(ViewEvent.NavigateToLogin)
         } else {
-            //Navigate to Home
+            /**Authenticated -> send event NavigateToHome to view*/
             _shareFlow.emit(ViewEvent.NavigateToHome)
         }
     }

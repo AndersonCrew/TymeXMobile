@@ -19,15 +19,18 @@ import javax.inject.Inject
 class DetailUserViewModel @Inject constructor(private val getUserDetailUseCase: GetUserDetailUseCase): HostViewModel() {
 
     sealed class ViewState : BaseViewState {
-        data class GetUserSuccess(val list: User?) : ViewState()
+        data class GetUserSuccess(val user: User?) : ViewState()
         data object EmptyState: ViewState()
     }
 
     private val _stateFlow = MutableStateFlow<ViewState>(ViewState.EmptyState)
     val stateFlow: Flow<ViewState> = _stateFlow.asStateFlow()
+
+    /**Fetch User Information from api via GetUserDetailUseCase*/
     fun getUser(userName: String) = execute {
         getUserDetailUseCase(userName).invoke(useCase = {
             if(it is GetUserDetailResult.GetUserDetailSuccess) {
+                //Emit event to View
                 _stateFlow.emit(ViewState.GetUserSuccess(it.user))
             }
         })

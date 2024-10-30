@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.android.data.ResourceException
 import com.android.data.UseCaseResult
@@ -20,7 +22,6 @@ import com.android.tymexmobile.R
 import com.android.tymexmobile.dialog.ConfirmDialog
 import com.android.tymexmobile.dialog.LoadingDialog
 import com.android.tymexmobile.utils.InflateFragmentAlias
-import com.android.tymexmobile.utils.safeClick
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -132,7 +133,11 @@ abstract class BaseFragment<VB : ViewBinding, VM : HostViewModel>(private val in
                         showPopupError(getString(R.string.session_expired), {
                             mPref.logout()
                             //TODO Navigate to Login
-                            //navigateTo(LoginRoute(isSignOut = true))
+                            val navController = findNavController()
+                            val navOptions = NavOptions.Builder()
+                                .setPopUpTo(navController.graph.startDestinationId, true)
+                                .build()
+                            navController.navigate(R.id.nav_graph_splash, null, navOptions)
                         })
                     }
 

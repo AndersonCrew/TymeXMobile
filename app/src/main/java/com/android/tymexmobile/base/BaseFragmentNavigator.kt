@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.android.tymexmobile.R
 import timber.log.Timber
 
+/**
+ * Created by BM Anderson on 29/10/2024.
+ */
 interface BaseFragmentNavigator {
     val navHostFragmentId: Int
 

@@ -110,6 +110,7 @@ dependencies {
 
     // hilt
     api(libs.dagger.hilt.android)
+    implementation(libs.core.ktx)
     kapt(libs.dagger.hilt.android.compiler)
 
     //Glide
@@ -120,6 +121,20 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Unit Testing
+    testImplementation("junit:junit:4.13")
+    testImplementation("android.arch.core:core-testing:1.1.1")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8")
+    testImplementation("io.mockk:mockk:1.13.2") 
+    testImplementation("org.mockito:mockito-inline:4.0.0")
+
+    // Android Testing
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.6.1")
 }
 
 // Allow references to generated code

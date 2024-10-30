@@ -24,6 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(Frag
     @Inject lateinit var navigator: SplashNavigator
     override fun bindViewEvents() {
         super.bindViewEvents()
+        //Check checkAuthentication of current user
         viewModel.checkAuthentication()
     }
 
@@ -35,10 +36,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(Frag
     override fun bindShareFlow(viewEvent: BaseViewEvent) {
         when (viewEvent) {
             is SplashViewModel.ViewEvent.NavigateToLogin -> {
+                /**UnAuthentication -> Navigate to LoginFragment*/
                 navigator.navigateSplashToLogin()
             }
 
             is SplashViewModel.ViewEvent.NavigateToHome -> {
+                /**Authenticated -> Navigate to HomeFragment*/
                 navigator.navigateSplashToHome()
             }
         }

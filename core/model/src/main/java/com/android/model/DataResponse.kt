@@ -1,6 +1,8 @@
 package com.android.model
 
-
+/**
+ * Created by BM Anderson on 28/10/2024.
+ */
 
 open class DataResponse<T>(
     var statusCode: Int? = null,
